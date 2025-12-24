@@ -16,16 +16,15 @@ const Contact = () => {
   } | null>(null);
   const [isSending, setIsSending] = useState(false);
 
+  // ✅ CORRECT WORKING EMAIL SCRIPT
   const emailUrl =
-    "https://script.google.com/macros/s/AKfycbwkjI7POBip0D3idUWfZwmdN4bV9TPfkfUWLwWZbu_rxDWSM5_F5VI1jVAXCKlRt0ykAg/exec";
+    "https://script.google.com/macros/s/AKfycbzX3zpU1qx9dPKHMu9b7LwNbvB2RYRXrvgjAWIh2oB0hsCwqYBBedRDBSkjIQEW1Ush/exec";
 
-  /** Email validation */
   const checkEmailIsValid = (email: string) => {
     const emailReg = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return emailReg.test(email);
   };
 
-  /** Handle input changes */
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -34,7 +33,6 @@ const Contact = () => {
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  /** Validate fields before submit */
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
     if (!form.email.trim()) newErrors.email = "Email is required.";
@@ -45,7 +43,6 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  /** Handle submit */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -59,12 +56,11 @@ const Contact = () => {
     formData.set("Request", form.message);
 
     try {
-      const response = await fetch(emailUrl, {
+      await fetch(emailUrl, {
         method: "POST",
         body: formData,
       });
 
-      await response.json();
       setStatus({
         message: "Thanks for reaching out! I'll get back to you soon.",
         status: "Success",
@@ -91,7 +87,7 @@ const Contact = () => {
   return (
     <section className="w-full mt-25 px-6">
       <div className="max-w-7xl mx-auto flex flex-col gap-8 justify-center items-center">
-        {/* Header */}
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -105,7 +101,6 @@ const Contact = () => {
           />
         </motion.div>
 
-        {/* Contact Form */}
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 30 }}
@@ -116,7 +111,7 @@ const Contact = () => {
             isSending ? "opacity-70 pointer-events-none" : ""
           }`}
         >
-          {/* Email */}
+
           <div className="flex flex-col">
             <label htmlFor="email" className="text-sm text-gray-400 mb-2">
               Email
@@ -140,7 +135,6 @@ const Contact = () => {
             )}
           </div>
 
-          {/* Message */}
           <div className="flex flex-col">
             <label htmlFor="message" className="text-sm text-gray-400 mb-2">
               Message
@@ -166,7 +160,6 @@ const Contact = () => {
             )}
           </div>
 
-          {/* Status Message */}
           {status && (
             <motion.p
               initial={{ opacity: 0 }}
@@ -177,7 +170,6 @@ const Contact = () => {
             </motion.p>
           )}
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={isSending}
