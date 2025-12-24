@@ -4,7 +4,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import SectionHeader from "../ui/SectionHeader";
 import { BiSend, BiLoaderAlt } from "react-icons/bi";
+
 type StatusType = "Loading" | "Success" | "Error";
+
 const Contact = () => {
   const [form, setForm] = useState({ email: "", message: "" });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -29,7 +31,7 @@ const Contact = () => {
   ) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: "" })); // clear error when typing
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   /** Validate fields before submit */
@@ -62,8 +64,7 @@ const Contact = () => {
         body: formData,
       });
 
-      const result = await response.json();
-      console.log("Email response:", result);
+      await response.json();
       setStatus({
         message: "Thanks for reaching out! I'll get back to you soon.",
         status: "Success",
@@ -80,7 +81,12 @@ const Contact = () => {
     }
   };
 
-  const color = status?.status === "Success" ? "text-green-500" : status?.status === "Error" ? "text-red-500" : "text-gray-400";
+  const color =
+    status?.status === "Success"
+      ? "text-green-500"
+      : status?.status === "Error"
+      ? "text-red-500"
+      : "text-gray-400";
 
   return (
     <section className="w-full mt-25 px-6">
@@ -94,8 +100,8 @@ const Contact = () => {
         >
           <SectionHeader
             title="Contact Me"
-            subtitle="Get in Touch"
-            description="I'd love to hear from you! Whether you have a question, a project idea, or just want to say hello, feel free to reach out."
+            subtitle="Questions, Opportunities, or Recruitment Inquiries"
+            description="If you have any questions, are interested in working together, or would like to discuss opportunities in the recruitment process, feel free to reach out. I’ll respond as soon as I can."
           />
         </motion.div>
 
@@ -160,7 +166,6 @@ const Contact = () => {
             )}
           </div>
 
-          
           {/* Status Message */}
           {status && (
             <motion.p

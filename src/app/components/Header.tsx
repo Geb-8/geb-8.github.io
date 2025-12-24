@@ -1,5 +1,5 @@
 "use client";
-import { Code2Icon, FolderClosedIcon } from "lucide-react";
+import { Code2Icon, FolderClosedIcon, UserIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { BsGithub } from "react-icons/bs";
@@ -24,17 +24,31 @@ const NavBar = () => {
       });
     }
   };
+
+  const handleAboutSection = () => {
+    const el = document.getElementById("about");
+    if (el) {
+      window.scrollTo({
+        top: el.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div className="mx-2 md:mx-0 border-[0.2] flex-1 grow border-gray-700 max-w-4xl text-gray-400 backdrop-blur-3xl bg-[#0D1117]/75 mt-6 p-4 px-6 md:px-12 rounded-2xl flex justify-between items-center">
+      
       <Link
         href="/"
         className="font-medium font-display text-gray-50 flex gap-2 justify-center items-center"
       >
         <Code2Icon />
-        SOHEL SAYYED
+        Gabriel Gebremedhn
       </Link>
+
       <nav>
         <ul className="flex gap-2 text-sm font-medium">
+
           <li>
             <button
               type="button"
@@ -45,19 +59,33 @@ const NavBar = () => {
               <FolderClosedIcon size={18} /> Projects
             </button>
           </li>
+
+          <li>
+            <button
+              type="button"
+              title="More About Me"
+              onClick={handleAboutSection}
+              className="flex items-center gap-2 hover:text-gray-200 transition-all duration-200 bg-gradient-to-b from-transparent to-transparent hover:from-transparent hover:to-gray-900 hover:border-b-[0.2] border-gray-500 px-3 py-2 rounded-lg"
+            >
+              <UserIcon size={18} /> More About Me
+            </button>
+          </li>
+
           <li className="py-1">
             <span className="w-0.5 h-full bg-red-500 inline-block"></span>
           </li>
+
           <li>
             <Link
               target="_blank"
-              title="Github"
-              href="https://github.com/sohez"
+              title="GitHub"
+              href="https://github.com/Geb-8"
               className="flex items-center gap-2 hover:text-gray-200 transition-all duration-200 bg-gradient-to-b from-transparent to-transparent hover:from-transparent hover:to-gray-900 hover:border-b-[0.2] border-gray-500 px-3 py-2 rounded-lg"
             >
               <BsGithub size={18} />
             </Link>
           </li>
+
         </ul>
       </nav>
     </div>

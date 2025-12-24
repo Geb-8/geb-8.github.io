@@ -20,80 +20,62 @@ const openSans = Open_Sans({
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "SAYYED SOHEL",
-  url: "https://sohez.github.io/",
-  image: "https://sohez.github.io/images/hero/sohel-sayyed-image.webp",
-  sameAs: [
-    "https://www.instagram.com/sohel_sayyed.0x",
-    "https://github.com/sohez",
-    "https://www.linkedin.com/in/sohez/",
-  ],
-  jobTitle: "Founder & Software Developer",
+  name: "Gabriel Gebremedhn",
+  url: "https://geb-8.github.io/",
+  jobTitle: "Electrical Engineering Student",
   worksFor: {
     "@type": "Organization",
-    name: "Sohezsoft",
-    url: "https://sohez.github.io/",
+    name: "University of Alberta",
   },
   description:
-    "Sayyed Sohel — Full-Stack Web & Android Developer, Founder of Sohezsoft. I build fast, modern, and user-focused digital experiences that stand out.",
+    "Gabriel Gebremedhin is a third-year Electrical Engineering student specializing in embedded systems, firmware development, and hardware-software integration.",
 };
 
 export const metadata: Metadata = {
-  title: "Sohez: Official Site of Sayyed Sohel",
+  title: "Gabriel Gebremedhn | Electrical Engineering Portfolio",
   description:
-    "Sayyed Sohel — Full-Stack Web & Android Developer, Founder of Sohezsoft. I build fast, modern, and user-focused digital experiences that stand out.",
+    "Portfolio of Gabriel Gebremedhn — Electrical Engineering student specializing in embedded systems, firmware development, and hardware-software integration.",
   keywords: [
-    "Sohez: Official Site of Sayyed Sohel",
-    "sayyed sohel",
-    "sohez",
-    "Sohez Official",
-    "Portfolio website",
-    "Developer website",
-    "Websites Development",
-    "Android Development",
+    "Gabriel Gebremedhn",
+    "Electrical Engineering Portfolio",
+    "Embedded Systems",
+    "Firmware",
+    "Microcontrollers",
+    "ATmega",
+    "ARM",
+    "University of Alberta",
   ],
-  metadataBase: new URL("https://sohez.github.io/"),
+  metadataBase: new URL("https://geb-8.github.io/"),
   alternates: {
-    canonical: "https://sohez.github.io/",
+    canonical: "https://geb-8.github.io/",
   },
   openGraph: {
     type: "website",
-    url: "https://sohez.github.io/",
-    title: "Sohez: Official Site of Sayyed Sohel",
+    url: "https://geb-8.github.io/",
+    title: "Gabriel Gebremedhn | Electrical Engineering Portfolio",
     description:
-      "Sayyed Sohel — Full-Stack Web & Android Developer, Founder of Sohezsoft. I build fast, modern, and user-focused digital experiences that stand out.",
-    siteName: "sohez.github.io",
-    images: [
-      {
-        url: "https://sohez.github.io/images/hero/sohel-sayyed-image.webp",
-        width: 800,
-        height: 800,
-        alt: "Sayyed Sohel",
-      },
-    ],
-    locale: "en_US",
+      "Portfolio of Gabriel Gebremedhn — Electrical Engineering student specializing in embedded systems, firmware development, and hardware-software integration.",
+    siteName: "Gabriel Gebremedhn",
+    locale: "en_CA",
   },
   robots: {
     index: true,
     follow: true,
   },
-  verification: {
-    google: "bu-25FFf4PhQHh1K0g0TkBl234K940ET9TRibw34ExM",
-  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Sohez",
+    title: "Gabriel Portfolio",
   },
   icons: {
-    icon: "https://sohez.github.io/images/hero/sohel-sayyed-image.webp",
-    apple: "https://sohez.github.io/images/hero/sohel-sayyed-image.webp",
+    icon: [],
+    apple: [],
   },
 };
 
 export const viewport: Viewport = {
   themeColor: "#0d1117",
-}
+};
 
 export default function RootLayout({
   children,

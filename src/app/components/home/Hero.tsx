@@ -2,32 +2,15 @@
 import Image from "next/image";
 import React from "react";
 import "./hero.css";
-import { BsInstagram, BsWhatsapp } from "react-icons/bs";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { MdMailOutline } from "react-icons/md";
 import { motion } from "framer-motion";
-
-const socialLinks = [
-  {
-    name: "Instagram",
-    icon: <BsInstagram size={20} />,
-    url: "https://www.instagram.com/sohel_sayyed.0x",
-  },
-  {
-    name: "Email",
-    icon: <MdMailOutline size={25} />,
-    url: "mailto:techsohez@gmail.com",
-  },
-  {
-    name: "WhatsApp",
-    icon: <BsWhatsapp size={20} />,
-    url: "https://wa.me/+917887614788",
-  },
-];
 
 const Hero = () => {
   return (
     <section className="w-full mt-35 px-6">
       <div className="max-w-7xl mx-auto flex flex-col gap-2 justify-center items-center">
+
         {/* Profile Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -36,10 +19,10 @@ const Hero = () => {
           className="border-4 border-gray-800 group relative w-40 sm:w-40 md:w-48 lg:w-56 aspect-square overflow-hidden rounded-full transition-all duration-300"
         >
           <Image
-            src="/images/hero/sohel-sayyed-image.webp"
-            alt="Sohel Sayyed - profile photo"
+            src="/images/hero/your-photo.png"
+            alt="Gabriel Gebremedhn - profile photo"
             fill
-            className="grayscale-100 hover:grayscale-0 object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+            className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
         </motion.div>
 
@@ -53,7 +36,7 @@ const Hero = () => {
           <div className="flex flex-col justify-center items-center text-center md:text-start md:justify-start md:items-start">
             <span>Hi, I&apos;m</span>
             <h1 className="font-display tracking-normal text-5xl font-medium text-gray-50">
-              Sohel Sayyed
+              Gabriel Gebremedhn
             </h1>
           </div>
 
@@ -66,11 +49,16 @@ const Hero = () => {
           </motion.div>
 
           <p className="text-xl tracking-wider text-center leading-relaxed">
-            I&apos;m Sayyed Sohel, a professional with extensive experience in{" "}
-            <span>crafting user-friendly <span className="bg-blue-900/60 px-1">websites</span></span> and powerful{" "}
-            <span className="bg-purple-900/60 px-1">Android applications</span>. I can help you bring your digital
-            ideas to life — whether it&apos;s a sleek modern website or a
-            feature-rich mobile app!
+            I&apos;m a third-year Electrical Engineering student at the University of Alberta with a strong interest in{" "}
+            <span className="bg-blue-900/60 px-1">embedded systems</span> and hands-on engineering. I enjoy building projects where
+            hardware and software come together — from circuit design and microcontroller programming to writing{" "}
+            <span className="bg-purple-900/60 px-1">Embedded C</span> for reliable, efficient, and intuitive systems.
+            <br /><br />
+            My work includes AVR and Arduino projects using servos, ultrasonic sensors, LCDs, RGB LEDs, and timing-critical
+            features like <span className="bg-green-900/60 px-1">PWM</span>, interrupts, and debouncing. I also design and analyze
+            electronic circuits, build FPGA systems in VHDL, and work with ARM assembly when low-level control is required.
+            I enjoy building systems that are practical, intuitive, and satisfying to use, and I bring creativity into every
+            project I work on.
           </p>
 
           <motion.div
@@ -88,19 +76,15 @@ const Hero = () => {
 
 export default Hero;
 
-// slider style come from hero.css file.
 const SkillsSlider = () => {
   return (
     <div className="flex gap-2 justify-center items-baseline">
-      <div>I&apos;m</div>
+      <div>I&apos;m an</div>
       <div className="slider">
         <div className="slides text-gray-300">
-          <div>
-            Android Dev
-          </div>
-          <div>
-            Fullstack Dev
-          </div>
+          <div>Electrical Engineering Student</div>
+          <div>Aspiring Embedded Developer</div>
+          <div>Hardware & Firmware Engineer</div>
         </div>
       </div>
     </div>
@@ -109,26 +93,41 @@ const SkillsSlider = () => {
 
 const SocialLinks = () => {
   return (
-    <div>
-      <ul className="flex gap-5 justify-center items-center">
-        {socialLinks.map((link) => {
-          return (
-            <li
-              key={link.name}
-              className="transition-all duration-200 text-gray-400 hover:rotate-6 hover:scale-110 hover:text-gray-50"
-            >
-              <a
-                title={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.icon}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
+    <div className="flex flex-col items-center gap-5 mt-2 text-sm text-gray-400">
+
+      <div className="flex gap-6">
+        <a
+          href="https://github.com/Geb-8"
+          target="_blank"
+          className="flex items-center gap-2 hover:text-white transition"
+        >
+          <BsGithub /> GitHub
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/gabrielgebremedhn"
+          target="_blank"
+          className="flex items-center gap-2 hover:text-white transition"
+        >
+          <BsLinkedin /> LinkedIn
+        </a>
+
+        <a
+          href="mailto:hadgu@ualberta.ca"
+          className="flex items-center gap-2 hover:text-white transition"
+        >
+          <MdMailOutline /> Email
+        </a>
+      </div>
+
+      <a
+        href="/resume/Main-GabrielHagosElectricalResume1.docx.pdf"
+        download
+        className="text-sm px-6 py-2 border border-gray-700 rounded-lg hover:border-blue-500 hover:text-blue-500 transition-all"
+      >
+        Download Resume
+      </a>
+
     </div>
   );
 };
