@@ -1,93 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import SectionHeader from "../ui/SectionHeader";
-import { BiSend, BiLoaderAlt } from "react-icons/bi";
-
-type StatusType = "Loading" | "Success" | "Error";
+import { Mail, Phone } from "lucide-react";
 
 const Contact = () => {
-  const [form, setForm] = useState({ email: "", message: "" });
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [status, setStatus] = useState<{
-    message: string;
-    status: StatusType;
-  } | null>(null);
-  const [isSending, setIsSending] = useState(false);
-
-  // ✅ CORRECT WORKING EMAIL SCRIPT
-  const emailUrl =
-    "https://script.google.com/macros/s/AKfycbzX3zpU1qx9dPKHMu9b7LwNbvB2RYRXrvgjAWIh2oB0hsCwqYBBedRDBSkjIQEW1Ush/exec";
-
-  const checkEmailIsValid = (email: string) => {
-    const emailReg = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    return emailReg.test(email);
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
-
-  const validateForm = () => {
-    const newErrors: { [key: string]: string } = {};
-    if (!form.email.trim()) newErrors.email = "Email is required.";
-    else if (!checkEmailIsValid(form.email))
-      newErrors.email = "Enter a valid email address.";
-    if (!form.message.trim()) newErrors.message = "Message is required.";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-
-    setIsSending(true);
-    setStatus({ message: "Sending...", status: "Loading" });
-
-    const formData = new FormData();
-    formData.set("Name", "@PORTFOLIO-v2");
-    formData.set("Email", form.email);
-    formData.set("Request", form.message);
-
-    try {
-      await fetch(emailUrl, {
-        method: "POST",
-        body: formData,
-      });
-
-      setStatus({
-        message: "Thanks for reaching out! I'll get back to you soon.",
-        status: "Success",
-      });
-      setForm({ email: "", message: "" });
-    } catch (error) {
-      setStatus({
-        message: "Something went wrong. Please try again.",
-        status: "Error",
-      });
-    } finally {
-      setIsSending(false);
-      setTimeout(() => setStatus(null), 3000);
-    }
-  };
-
-  const color =
-    status?.status === "Success"
-      ? "text-green-500"
-      : status?.status === "Error"
-      ? "text-red-500"
-      : "text-gray-400";
-
   return (
-    <section className="w-full mt-25 px-6">
+    <section className="w-full mt-25 px-6" id="contact">
       <div className="max-w-7xl mx-auto flex flex-col gap-8 justify-center items-center">
 
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -96,100 +18,52 @@ const Contact = () => {
         >
           <SectionHeader
             title="Contact Me"
-            subtitle="Questions, Opportunities, or Recruitment Inquiries"
-            description="If you have any questions, are interested in working together, or would like to discuss opportunities in the recruitment process, feel free to reach out. I’ll respond as soon as I can."
+            subtitle="Preferred Method: Email"
+            description="The best way to reach me is via email. I also welcome phone calls if needed."
           />
         </motion.div>
 
-        <motion.form
-          onSubmit={handleSubmit}
+        {/* Contact Card */}
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true }}
-          className={`w-full max-w-3xl border border-gray-700 bg-[#161B22]/70 backdrop-blur-3xl p-8 rounded-2xl flex flex-col gap-6 text-gray-200 ${
-            isSending ? "opacity-70 pointer-events-none" : ""
-          }`}
+          className="w-full max-w-3xl border border-gray-700 bg-[#161B22]/70 backdrop-blur-3xl p-8 rounded-2xl text-gray-200 space-y-6"
         >
-
-          <div className="flex flex-col">
-            <label htmlFor="email" className="text-sm text-gray-400 mb-2">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="your@email.com"
-              className={`px-4 py-3 rounded-md bg-transparent border ${
-                errors.email ? "border-red-500" : "border-gray-700"
-              } focus:outline-none focus:ring-2 ${
-                errors.email ? "focus:ring-red-500" : "focus:ring-gray-500"
-              } placeholder-gray-500 transition-all duration-200`}
-              disabled={isSending}
-            />
-            {errors.email && (
-              <span className="text-red-500 text-sm mt-1">{errors.email}</span>
-            )}
+          {/* Email */}
+          <div className="flex items-center gap-4">
+            <Mail className="text-blue-500" />
+            <div>
+              <p className="text-sm text-gray-400">Email (preferred)</p>
+              <a
+                href="mailto:hadgu@ualberta.ca"
+                className="text-lg hover:text-blue-500 transition-colors"
+              >
+                hadgu@ualberta.ca
+              </a>
+            </div>
           </div>
 
-          <div className="flex flex-col">
-            <label htmlFor="message" className="text-sm text-gray-400 mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={5}
-              value={form.message}
-              onChange={handleChange}
-              placeholder="Write your message here..."
-              className={`px-4 py-3 rounded-md bg-transparent border ${
-                errors.message ? "border-red-500" : "border-gray-700"
-              } focus:outline-none focus:ring-2 ${
-                errors.message ? "focus:ring-red-500" : "focus:ring-gray-500"
-              } placeholder-gray-500 resize-none transition-all duration-200`}
-              disabled={isSending}
-            />
-            {errors.message && (
-              <span className="text-red-500 text-sm mt-1">
-                {errors.message}
-              </span>
-            )}
+          {/* Phone */}
+          <div className="flex items-center gap-4">
+            <Phone className="text-blue-500" />
+            <div>
+              <p className="text-sm text-gray-400">Phone (Canada)</p>
+              <a
+                href="tel:+1 (825)-419-9287"
+                className="text-lg hover:text-blue-500 transition-colors"
+              >
+                +1 (825)-419-9287
+              </a>
+            </div>
           </div>
 
-          {status && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className={`text-sm mt-2 ${color}`}
-            >
-              {status.message}
-            </motion.p>
-          )}
-
-          <button
-            type="submit"
-            disabled={isSending}
-            className={`cursor-pointer mt-3 max-w-fit py-2 px-5 flex gap-2 justify-center items-center rounded-lg border border-gray-700 text-gray-200 transition-all ${
-              isSending
-                ? "bg-gray-800 cursor-not-allowed"
-                : "hover:border-blue-500 hover:text-blue-500"
-            }`}
-          >
-            {isSending ? (
-              <>
-                <BiLoaderAlt className="animate-spin" /> Sending...
-              </>
-            ) : (
-              <>
-                Send Message <BiSend />
-              </>
-            )}
-          </button>
-        </motion.form>
+          {/* Note */}
+          <p className="text-sm text-gray-400 pt-4 border-t border-gray-700">
+            Email is the preferred method of communication. I typically respond within 24 hours.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

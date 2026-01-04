@@ -24,7 +24,7 @@ const projects: Project[] = [
     title: "Servo-Powered Ultrasonic Sonar Scanner",
     image: "/images/projects/sonar-main.webp",
     schematic: "/images/projects/sonar-schematic.webp",
-    video: "/videos/sonar-demo.mp4",
+    video: "https://www.youtube.com/watch?v=ib-npuFnsrQ",
     tags: ["ATmega328P", "Embedded C", "PWM", "ADC", "Timers", "Ultrasonic", "Servo", "KiCad"],
     github: null,
     demo: null,
@@ -44,7 +44,7 @@ I designed the full hardware circuit in KiCad. The SNAP programmer connects to t
     schematic: "/images/projects/ltspice-1.png",
     schematic2: "/images/projects/ltspice-2.png",
     scope: "/images/projects/amplifier-scope1.webp",
-    video: "/videos/amplifier-demo.mp4",
+    video: "https://www.youtube.com/watch?v=MMFi3pUHYkU",
     tags: ["BJT", "Analog Design", "LTspice", "Oscilloscope", "Amplifiers", "ECE 302"],
     github: null,
     demo: null,
@@ -95,7 +95,7 @@ The joystick is powered by 5 V and ground, with VRx, VRy, and the switch connect
     title: "Altium 5V to 3.3V Linear Regulator",
     image: "/images/projects/regulator-main.webp",
     schematic: "/images/projects/regulator-schematic.webp",
-    video: "/videos/regulator-demo.mp4",
+    video: "https://www.youtube.com/watch?v=NPdDLb_HD48",
     tags: ["Altium", "PCB Design", "Power Electronics", "Voltage Regulation"],
     github: null,
     demo: null,
@@ -210,7 +210,18 @@ const Projects = () => {
                 {active.video && (
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Demonstration Video</h3>
-                    <video controls className="w-full rounded-xl border" src={active.video} />
+                    {active.video.includes("youtube.com") ? (
+                      <a 
+                        href={active.video} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        Watch on YouTube <ExternalLink size={18} />
+                      </a>
+                    ) : (
+                      <video controls className="w-full rounded-xl border" src={active.video} />
+                    )}
                   </div>
                 )}
 
