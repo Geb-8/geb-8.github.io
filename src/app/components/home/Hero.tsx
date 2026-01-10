@@ -121,7 +121,7 @@ const SocialLinks = () => {
       </div>
 
       <a
-        href="/resume/Main-GabrielHagosElectricalResume1.docx.pdf"
+        href="/resume/Main-GabrielHagosElectricalResume1.pdf"
         download
         className="text-sm px-6 py-2 border border-gray-700 rounded-lg hover:border-blue-500 hover:text-blue-500 transition-all"
       >
