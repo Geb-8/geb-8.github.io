@@ -99,7 +99,7 @@ The joystick is powered by 5 V and ground, with VRx, VRy, and the switch connect
     tags: ["Altium", "PCB Design", "Power Electronics", "Voltage Regulation"],
     github: null,
     demo: null,
-
+  
     description: `This project was a simple design I created to learn how to use Altium Designer and practice basic power electronics concepts. 
   
   I built a 5V to 3.3V linear voltage regulator using a small set of randomly selected components from a parts list. The circuit includes two capacitors for input and output filtering, one regulator IC, and two supporting resistors. The goal was not to optimize the design, but to understand schematic capture, component selection, net labeling, and layout workflow inside Altium.
@@ -109,22 +109,6 @@ The joystick is powered by 5 V and ground, with VRx, VRy, and the switch connect
     conclusion: `This project gave me hands-on experience with Altium Designer and reinforced my understanding of how simple voltage regulation circuits are built and documented.`,
   }
 ];
-
-const getYouTubeEmbedUrl = (url: string) => {
-  try {
-    if (url.includes("youtu.be/")) {
-      const id = url.split("youtu.be/")[1]?.split("?")[0];
-      return id ? `https://www.youtube.com/embed/${id}` : null;
-    }
-    if (url.includes("youtube.com")) {
-      const id = new URL(url).searchParams.get("v");
-      return id ? `https://www.youtube.com/embed/${id}` : null;
-    }
-    return null;
-  } catch {
-    return null;
-  }
-};
 
 const Projects = () => {
   const [active, setActive] = useState<Project | null>(null);
@@ -226,28 +210,15 @@ const Projects = () => {
                 {active.video && (
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Demonstration Video</h3>
-                    {active.video.includes("youtube.com") || active.video.includes("youtu.be") ? (
-                      <>
-                        <div className="relative w-full aspect-video rounded-xl border overflow-hidden">
-                          <iframe
-                            src={getYouTubeEmbedUrl(active.video) ?? undefined}
-                            title="YouTube video player"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="absolute inset-0 w-full h-full"
-                          />
-                        </div>
-
-                        {/* Keep original behavior available too */}
-                        <a
-                          href={active.video}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-3 inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
-                        >
-                          Watch on YouTube <ExternalLink size={18} />
-                        </a>
-                      </>
+                    {active.video.includes("youtube.com") ? (
+                      <a 
+                        href={active.video} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        Watch on YouTube <ExternalLink size={18} />
+                      </a>
                     ) : (
                       <video controls className="w-full rounded-xl border" src={active.video} />
                     )}
